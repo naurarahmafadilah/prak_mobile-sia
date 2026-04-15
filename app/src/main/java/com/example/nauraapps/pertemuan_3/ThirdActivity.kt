@@ -2,15 +2,9 @@ package com.example.nauraapps.pertemuan_3
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
+import android.view.MenuItem
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.nauraapps.R
 import com.example.nauraapps.databinding.ActivityThirdBinding
 
 class ThirdActivity : AppCompatActivity() {
@@ -19,29 +13,41 @@ class ThirdActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        //setContentView(R.layout.activity_third)
+
+        // ViewBinding
         binding = ActivityThirdBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        // ✅ Toolbar
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.apply {
+            title = "Third Activity"
+            setDisplayHomeAsUpEnabled(true)
         }
 
-        // Inisialisasi komponen
-        //val inputNoTujuan: EditText = findViewById(R.id.inputNoTujuan)
-        //val btnKirim: Button = findViewById(R.id.btnKirim)
-
+        // Klik tombol kirim
         binding.btnKirim.setOnClickListener {
-            //Mengambil value dari inputNama dan menampilkan di Logcat
-            val inputNoTujuan = binding.inputNoTujuan.text
+            val inputNoTujuan = binding.inputNoTujuan.text.toString()
 
-            Toast.makeText(this, "pesan ni berhasil dikirim ke $inputNoTujuan", Toast.LENGTH_SHORT)
-                .show()
+            Toast.makeText(
+                this,
+                "Pesan berhasil dikirim ke $inputNoTujuan",
+                Toast.LENGTH_SHORT
+            ).show()
 
             val intent = Intent(this, ThirdResultActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    // ✅ Tombol back toolbar
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressedDispatcher.onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }
