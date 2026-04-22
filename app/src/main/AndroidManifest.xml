@@ -14,10 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NauraApps">
         <activity
-            android:name=".pertemuan_5.WebViewActivity"
+            android:name=".SplashScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".pertemuan_5.FifthActivity"
+            android:name=".AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,8 +26,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".pertemuan_5.WebViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".pertemuan_5.FifthActivity"
+            android:exported="false"/>
         <activity
             android:name=".pertemuan_4.FourthActivity"
             android:exported="false" />
