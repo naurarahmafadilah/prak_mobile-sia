@@ -1,4 +1,4 @@
-package com.example.nauraapps.pertemuan_2
+package com.example.nauraapps.Home.pertemuan_2
 
 fun main(){
     println("Hai rekan-rekan...")
