@@ -27,43 +27,30 @@ class BaseActivity : AppCompatActivity() {
             insets
         }
 
-        /** FragmentHome sebagai fragment default */
-        replaceFragment(HomeFragment())
+        /** FragmentHome sebagai fragment default saat pertama kali dibuka */
+        if (savedInstanceState == null) {
+            replaceFragment(HomeFragment())
+        }
 
-        binding.bottomNavView.setOnItemSelectedListener {
-            when (it.itemId) {
+        // GABUNGKAN SEMUA LOGIKA DI SINI
+        binding.bottomNavView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
                 R.id.home -> {
+                    Toast.makeText(this, "Home Clicked", Toast.LENGTH_SHORT).show()
                     replaceFragment(HomeFragment())
                     true
                 }
                 R.id.message -> {
+                    Toast.makeText(this, "Message Clicked", Toast.LENGTH_SHORT).show()
                     replaceFragment(MessageFragment())
                     true
                 }
                 R.id.more -> {
+                    Toast.makeText(this, "More Clicked", Toast.LENGTH_SHORT).show()
                     replaceFragment(MoreFragment())
                     true
                 }
-                else ->false
-            }
-        }
-
-
-        binding.bottomNavView.setOnItemSelectedListener {
-            when (it.itemId) {
-                R.id.home -> {
-                    Toast.makeText(this, "Home Clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.message -> {
-                    Toast.makeText(this, "Message Clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                R.id.more -> {
-                    Toast.makeText(this, "More Clicked", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                else -> false // return false jika item tidak ada yang di klik
+                else -> false
             }
         }
     }
@@ -71,7 +58,6 @@ class BaseActivity : AppCompatActivity() {
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(binding.fragmentContainer.id, fragment)
-            //.addToBackStack(null) -> ini kita nonaktifkan agar saat back langsung keluar aplikasi
             .commit()
     }
 }

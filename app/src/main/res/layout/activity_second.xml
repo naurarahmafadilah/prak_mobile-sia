@@ -22,9 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_arrow_back"
-            app:navigationIconTint="@color/dark_olive"
+            app:navigationIconTint="@color/accent_soft"
             app:title="Pertemuan 2"
-            app:titleTextColor="@color/dark_olive" />
+            app:titleTextColor="@color/black" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <LinearLayout

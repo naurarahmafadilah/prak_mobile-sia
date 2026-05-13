@@ -14,6 +14,7 @@ import com.example.nauraapps.Home.pertemuan_3.ThirdActivity
 import com.example.nauraapps.Home.pertemuan_4.FourthActivity
 import com.example.nauraapps.Home.pertemuan_5.FifthActivity
 import com.example.nauraapps.Home.pertemuan_7.SeventhActivity
+import com.example.nauraapps.Home.pertemuan_9.NinthActivity // Pastikan import ini benar
 import com.example.nauraapps.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -32,52 +33,61 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // --- Navigasi Pertemuan ---
+        // Gunakan fungsi pembantu untuk kerapihan (Optional)
+        setupNavigation()
+        setupLogout()
+    }
 
-        binding.btnToSecond.setOnClickListener {
-            startActivity(Intent(requireContext(), SecondActivity::class.java))
-        }
-
-        binding.btnToThird.setOnClickListener {
-            startActivity(Intent(requireContext(), ThirdActivity::class.java))
-        }
-
-        binding.btnToFourth.setOnClickListener {
-            val intent = Intent(requireContext(), FourthActivity::class.java).apply {
-                putExtra("name", "Politeknik Caltex Riau")
-                putExtra("from", "Rumbai")
-                putExtra("age", 25)
+    private fun setupNavigation() {
+        binding.apply {
+            btnToSecond.setOnClickListener {
+                startActivity(Intent(requireContext(), SecondActivity::class.java))
             }
-            startActivity(intent)
+
+            btnToThird.setOnClickListener {
+                startActivity(Intent(requireContext(), ThirdActivity::class.java))
+            }
+
+            btnToFourth.setOnClickListener {
+                val intent = Intent(requireContext(), FourthActivity::class.java).apply {
+                    putExtra("name", "Politeknik Caltex Riau")
+                    putExtra("from", "Rumbai")
+                    putExtra("age", 25)
+                }
+                startActivity(intent)
+            }
+
+            btnToFifth.setOnClickListener {
+                startActivity(Intent(requireContext(), FifthActivity::class.java))
+            }
+
+            btnToSeventh.setOnClickListener {
+                startActivity(Intent(requireContext(), SeventhActivity::class.java))
+            }
+
+            // Memanggil NinthActivity
+            btnToNinth.setOnClickListener {
+                startActivity(Intent(requireContext(), NinthActivity::class.java))
+            }
         }
+    }
 
-        binding.btnToFifth.setOnClickListener {
-            startActivity(Intent(requireContext(), FifthActivity::class.java))
-        }
-
-        binding.btnToSeventh.setOnClickListener {
-            startActivity(Intent(requireContext(), SeventhActivity::class.java))
-        }
-
-        // --- Logika Logout ---
-
+    private fun setupLogout() {
         binding.btnLogout.setOnClickListener {
             AlertDialog.Builder(requireContext())
                 .setTitle("Logout")
                 .setMessage("Apakah Anda yakin ingin keluar?")
                 .setPositiveButton("Ya") { dialog, _ ->
-                    // ✅ Perbaikan: Inisialisasi Shared Preferences di Fragment
+                    // Hapus Session
                     val sharedPref = requireActivity().getSharedPreferences("login_pref", Context.MODE_PRIVATE)
-                    val editor = sharedPref.edit()
-                    editor.clear()
-                    editor.apply()
+                    sharedPref.edit().clear().apply()
 
                     dialog.dismiss()
 
-                    // Arahkan kembali ke halaman Login (AuthActivity)
-                    val intent = Intent(requireContext(), AuthActivity::class.java)
-                    // Clear task agar user tidak bisa tekan back kembali ke Dashboard
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    // Redirect ke AuthActivity dan bersihkan backstack
+                    val intent = Intent(requireContext(), AuthActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    }
                     startActivity(intent)
                     requireActivity().finish()
                 }
@@ -90,6 +100,6 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null // Mencegah memory leak
+        _binding = null
     }
 }
