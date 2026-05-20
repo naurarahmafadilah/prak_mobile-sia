@@ -21,9 +21,11 @@ class BaseActivity : AppCompatActivity() {
         binding = ActivityBaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        // PERBAIKAN DI SINI: Menggunakan binding.root menggantikan findViewById(R.id.main)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right,  0)
+            // Bottom padding diset 0 agar bottom navigation tidak terangkat oleh system navigation bar
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
@@ -32,7 +34,7 @@ class BaseActivity : AppCompatActivity() {
             replaceFragment(HomeFragment())
         }
 
-        // GABUNGKAN SEMUA LOGIKA DI SINI
+        // Penanganan navigasi menu bawah
         binding.bottomNavView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.home -> {

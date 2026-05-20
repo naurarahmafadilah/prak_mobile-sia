@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import com.example.nauraapps.AuthActivity
+import com.example.nauraapps.Home.pertemuan_10.TenthActivity
 import com.example.nauraapps.Home.pertemuan_2.SecondActivity
 import com.example.nauraapps.Home.pertemuan_3.ThirdActivity
 import com.example.nauraapps.Home.pertemuan_4.FourthActivity
@@ -68,6 +69,10 @@ class HomeFragment : Fragment() {
             // Memanggil NinthActivity
             btnToNinth.setOnClickListener {
                 startActivity(Intent(requireContext(), NinthActivity::class.java))
+            }
+
+            btnToTenth.setOnClickListener {
+                startActivity(Intent(requireContext(), TenthActivity::class.java))
             }
         }
     }

@@ -5,12 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.nauraapps.Home.pertemuan_10.TenthActivity
 import com.example.nauraapps.databinding.ActivityMainBinding
 import com.example.nauraapps.Home.pertemuan_2.SecondActivity
 import com.example.nauraapps.Home.pertemuan_3.ThirdActivity
 import com.example.nauraapps.Home.pertemuan_4.FourthActivity
 import com.example.nauraapps.Home.pertemuan_5.FifthActivity
 import com.example.nauraapps.Home.pertemuan_7.SeventhActivity
+import com.example.nauraapps.Home.pertemuan_9.NinthActivity
 
 // Import activity lainnya jika sudah dibuat (ThirdActivity, FifthActivity, SeventhActivity)
 
@@ -61,7 +63,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SeventhActivity::class.java)
             startActivity(intent)
         }
-
 
         // --- Logika Logout ---
         binding.btnLogout.setOnClickListener {
