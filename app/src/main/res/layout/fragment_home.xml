@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,322 +8,389 @@
     android:background="#F8F9FD"
     tools:context=".Home.HomeFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_height="240dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <LinearLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="40dp">
+            android:layout_height="match_parent"
+            app:contentScrim="#3F51B5"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <FrameLayout
+            <View
+                android:id="@+id/background_header"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_header_wave"
+                app:layout_collapseMode="parallax" />
 
-                <View
-                    android:id="@+id/background_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="240dp"
-                    android:background="@drawable/bg_header_wave" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarHome"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:padding="24dp">
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp">
 
+                    <!-- Baris Teks Bertumpuk -->
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginTop="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Selamat Datang,"
-                            android:textColor="#C5CAE9"
-                            android:textSize="14sp"
-                            android:letterSpacing="0.05" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="sans-serif-black"
-                            android:text="Dashboard Materi"
-                            android:textColor="@android:color/white"
-                            android:textSize="26sp" />
-                    </LinearLayout>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="10dp"
-                        app:cardBackgroundColor="#33FFFFFF"
-                        app:cardCornerRadius="22.5dp"
-                        app:strokeWidth="0dp">
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:layout_gravity="center"
-                            android:src="@android:drawable/ic_dialog_info"
-                            app:tint="@android:color/white" />
-                    </com.google.android.material.card.MaterialCardView>
-                </RelativeLayout>
-            </FrameLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="-40dp"
-                android:orientation="vertical"
-                android:paddingHorizontal="20dp">
-
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:cardCornerRadius="24dp"
-                    app:cardElevation="10dp"
-                    app:strokeWidth="0dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="24dp"
-                        android:background="@android:color/white"
+                        android:layout_centerVertical="true"
                         android:orientation="vertical">
 
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:id="@+id/txtProgressTitle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Progres Belajar"
-                                android:textStyle="bold"
-                                android:textSize="16sp"
-                                android:textColor="#3F51B5"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentRight="true"
-                                android:text="62%"
-                                android:textColor="#3F51B5"
-                                android:textStyle="bold"/>
-                        </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Halo, Selamat Pagi 👋"
+                            android:textColor="#CCFFFFFF"
+                            android:textSize="12sp"
+                            android:fontFamily="sans-serif-medium" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="Kamu telah menyelesaikan 5 dari 9 pertemuan."
-                            android:textSize="13sp"
-                            android:textColor="#9E9E9E"/>
-
-                        <ProgressBar
-                            style="@android:style/Widget.ProgressBar.Horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="8dp"
-                            android:layout_marginTop="16dp"
-                            android:progress="62"
-                            android:progressTint="#3F51B5" />
+                            android:layout_marginTop="2dp"
+                            android:text="Dashboard Materi"
+                            android:textColor="@android:color/white"
+                            android:textSize="18sp"
+                            android:fontFamily="sans-serif-black" />
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <!-- Ikon Setting / Aksi Kreatif di Kanan -->
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:src="@android:drawable/ic_menu_manage"
+                        app:tint="#FFFFFF" />
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Selamat Datang Kembali,"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                android:letterSpacing="0.02"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp"
+                app:strokeWidth="0dp"
+                app:layout_constraintTop_toBottomOf="@id/tvWelcome"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginBottom="16dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Akses Cepat Materi"
-                    android:textColor="#2D3142"
-                    android:textSize="19sp"
-                    android:letterSpacing="-0.02"/>
+                    android:padding="20dp"
+                    android:background="@android:color/white"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/txtProgressTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Progres Belajar"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:textColor="#3F51B5"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="62%"
+                            android:textColor="#3F51B5"
+                            android:textStyle="bold"/>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Kamu telah menyelesaikan 5 dari 9 pertemuan."
+                        android:textSize="13sp"
+                        android:textColor="#9E9E9E"/>
+
+                    <ProgressBar
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:layout_marginTop="16dp"
+                        android:progress="62"
+                        android:progressTint="#3F51B5" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tvSectionMateri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Akses Cepat Materi"
+                android:textColor="#2D3142"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/cardProgress"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <LinearLayout
+                android:id="@+id/layoutButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/tvSectionMateri"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnToSecond"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Pertemuan 2"
                     android:textAllCaps="false"
-                    app:backgroundTint="#FFFFFF"
                     android:textColor="#3F51B5"
-                    app:cornerRadius="16dp"
-                    android:elevation="2dp"
+                    android:gravity="left|center_vertical"
                     android:paddingLeft="20dp"
-                    android:gravity="left|center_vertical" />
+                    app:backgroundTint="#FFFFFF"
+                    app:cornerRadius="14dp"
+                    android:elevation="2dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnToThird"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Pertemuan 3"
                     android:textAllCaps="false"
-                    app:backgroundTint="#FFFFFF"
                     android:textColor="#3F51B5"
-                    app:cornerRadius="16dp"
-                    android:elevation="2dp"
+                    android:gravity="left|center_vertical"
                     android:paddingLeft="20dp"
-                    android:gravity="left|center_vertical" />
+                    app:backgroundTint="#FFFFFF"
+                    app:cornerRadius="14dp"
+                    android:elevation="2dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnToFourth"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Pertemuan 4"
                     android:textAllCaps="false"
-                    app:backgroundTint="#FFFFFF"
                     android:textColor="#3F51B5"
-                    app:cornerRadius="16dp"
-                    android:elevation="2dp"
+                    android:gravity="left|center_vertical"
                     android:paddingLeft="20dp"
-                    android:gravity="left|center_vertical" />
+                    app:backgroundTint="#FFFFFF"
+                    app:cornerRadius="14dp"
+                    android:elevation="2dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnToFifth"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Pertemuan 5"
                     android:textAllCaps="false"
-                    app:backgroundTint="#FFFFFF"
                     android:textColor="#3F51B5"
-                    app:cornerRadius="16dp"
-                    android:elevation="2dp"
+                    android:gravity="left|center_vertical"
                     android:paddingLeft="20dp"
-                    android:gravity="left|center_vertical" />
+                    app:backgroundTint="#FFFFFF"
+                    app:cornerRadius="14dp"
+                    android:elevation="2dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnToSeventh"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginBottom="12dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Pertemuan 7"
                     android:textAllCaps="false"
-                    app:backgroundTint="#FFFFFF"
                     android:textColor="#3F51B5"
-                    app:cornerRadius="16dp"
-                    android:elevation="2dp"
+                    android:gravity="left|center_vertical"
                     android:paddingLeft="20dp"
-                    android:gravity="left|center_vertical" />
+                    app:backgroundTint="#FFFFFF"
+                    app:cornerRadius="14dp"
+                    android:elevation="2dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnToNinth"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginBottom="24dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Pertemuan 9"
                     android:textAllCaps="false"
-                    app:backgroundTint="#FFFFFF"
                     android:textColor="#3F51B5"
-                    app:cornerRadius="16dp"
-                    android:elevation="2dp"
+                    android:gravity="left|center_vertical"
                     android:paddingLeft="20dp"
-                    android:gravity="left|center_vertical" />
+                    app:backgroundTint="#FFFFFF"
+                    app:cornerRadius="14dp"
+                    android:elevation="2dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnToTenth"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    android:layout_marginBottom="24dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="10dp"
                     android:text="Pertemuan 10"
                     android:textAllCaps="false"
-                    app:backgroundTint="#FFFFFF"
                     android:textColor="#3F51B5"
-                    app:cornerRadius="16dp"
-                    android:elevation="2dp"
+                    android:gravity="left|center_vertical"
                     android:paddingLeft="20dp"
-                    android:gravity="left|center_vertical" />
+                    app:backgroundTint="#FFFFFF"
+                    app:cornerRadius="14dp"
+                    android:elevation="2dp" />
+            </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Aktivitas Terakhir"
-                    android:textColor="#2D3142"
-                    android:textSize="19sp" />
+            <TextView
+                android:id="@+id/tvSectionGallery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Galeri Foto"
+                android:textColor="#2D3142"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/layoutButtons"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <com.google.android.material.card.MaterialCardView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGallery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_photo"
+                app:layout_constraintTop_toBottomOf="@id/tvSectionGallery"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/tvSectionActivity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Aktivitas Terakhir"
+                android:textColor="#2D3142"
+                android:textSize="18sp"
+                app:layout_constraintTop_toBottomOf="@id/rvGallery"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardLastActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="2dp"
+                app:strokeWidth="0dp"
+                app:layout_constraintTop_toBottomOf="@id/tvSectionActivity"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="32dp"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="2dp"
-                    app:strokeWidth="0dp">
+                    android:gravity="center_vertical"
+                    android:padding="16dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        app:cardBackgroundColor="#E8EAF6"
+                        app:cardCornerRadius="14dp"
+                        app:strokeWidth="0dp">
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:src="@android:drawable/ic_menu_today"
+                            app:tint="#3F51B5" />
+                    </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:padding="16dp">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            app:cardBackgroundColor="#E8EAF6"
-                            app:cardCornerRadius="14dp"
-                            app:strokeWidth="0dp">
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:src="@android:drawable/ic_menu_today"
-                                app:tint="#3F51B5" />
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
+                        android:layout_marginLeft="16dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Pertemuan 9 - Ninth Activity"
-                                android:textStyle="bold"
-                                android:textColor="#2D3142"
-                                android:textSize="15sp" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Baru saja ditambahkan"
-                                android:textColor="#9E9E9E"
-                                android:textSize="12sp" />
-                        </LinearLayout>
+                            android:text="Pertemuan 9 - Ninth Activity"
+                            android:textStyle="bold"
+                            android:textColor="#2D3142"
+                            android:textSize="15sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Baru saja ditambahkan"
+                            android:textColor="#9E9E9E"
+                            android:textSize="12sp" />
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
-                <Button
-                    android:id="@+id/btnLogout"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Logout Session"
-                    android:textColor="#FF4757"
-                    android:textStyle="bold"
-                    android:textSize="15sp" />
+            <Button
+                android:id="@+id/btnLogout"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                android:text="Logout Session"
+                android:textColor="#FF4757"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                app:layout_constraintTop_toBottomOf="@id/cardLastActivity"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-            </LinearLayout>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
