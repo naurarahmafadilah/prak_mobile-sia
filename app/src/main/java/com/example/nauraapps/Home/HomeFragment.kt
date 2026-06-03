@@ -7,16 +7,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nauraapps.AuthActivity
+import com.example.nauraapps.Data.api.PhotoApiClient
 import com.example.nauraapps.Home.pertemuan_10.TenthActivity
+import com.example.nauraapps.Home.pertemuan_13.ThirteenthActivity
 import com.example.nauraapps.Home.pertemuan_2.SecondActivity
 import com.example.nauraapps.Home.pertemuan_3.ThirdActivity
 import com.example.nauraapps.Home.pertemuan_4.FourthActivity
 import com.example.nauraapps.Home.pertemuan_5.FifthActivity
 import com.example.nauraapps.Home.pertemuan_7.SeventhActivity
-import com.example.nauraapps.Home.pertemuan_9.NinthActivity // Pastikan import ini benar
+import com.example.nauraapps.Home.pertemuan_9.NinthActivity
+import com.example.nauraapps.Home.photo.PhotoAdapter
 import com.example.nauraapps.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -34,9 +41,28 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Gunakan fungsi pembantu untuk kerapihan (Optional)
         setupNavigation()
         setupLogout()
+
+        // Memanggil fungsi loadPhoto saat View selesai dibuat
+        loadPhoto()
+    }
+
+    private fun loadPhoto() {
+        lifecycleScope.launch {
+            try {
+                // Mengambil data foto dari ApiClient
+                val photos = PhotoApiClient.apiService.getPhotos()
+                val adapter = PhotoAdapter(photos)
+                binding.rvGallery.adapter = adapter
+
+                /** List Tampil Vertical */
+                binding.rvGallery.layoutManager = LinearLayoutManager(requireContext())
+
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Gagal memuat gambar", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun setupNavigation() {
@@ -66,13 +92,18 @@ class HomeFragment : Fragment() {
                 startActivity(Intent(requireContext(), SeventhActivity::class.java))
             }
 
-            // Memanggil NinthActivity
             btnToNinth.setOnClickListener {
                 startActivity(Intent(requireContext(), NinthActivity::class.java))
             }
 
             btnToTenth.setOnClickListener {
                 startActivity(Intent(requireContext(), TenthActivity::class.java))
+            }
+
+            // Memperbaiki pemanggilan binding agar tidak redundan dengan binding.apply
+            btnToThirteen.setOnClickListener {
+                val intent = Intent(requireContext(), ThirteenthActivity::class.java)
+                startActivity(intent)
             }
         }
     }
@@ -83,13 +114,11 @@ class HomeFragment : Fragment() {
                 .setTitle("Logout")
                 .setMessage("Apakah Anda yakin ingin keluar?")
                 .setPositiveButton("Ya") { dialog, _ ->
-                    // Hapus Session
                     val sharedPref = requireActivity().getSharedPreferences("login_pref", Context.MODE_PRIVATE)
                     sharedPref.edit().clear().apply()
 
                     dialog.dismiss()
 
-                    // Redirect ke AuthActivity dan bersihkan backstack
                     val intent = Intent(requireContext(), AuthActivity::class.java).apply {
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     }
