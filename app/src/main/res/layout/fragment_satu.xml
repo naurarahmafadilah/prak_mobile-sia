@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fontFamily="@font/montserrat_variablefont_wght"
-        android:textStyle="bold"
-        android:textSize="25sp"
         android:gravity="center"
+        android:text="Ini adala tampilan pertama"
         android:textColor="@android:color/black"
-        android:text="Ini adalah tampilan pertama" />
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
 </FrameLayout>
